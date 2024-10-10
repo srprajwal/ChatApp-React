@@ -1,6 +1,7 @@
 import Background from "@/assets/login2.png"
 import Victory from "@/assets/victory.svg"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
 
@@ -11,6 +12,15 @@ const Auth = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+
+
+  const handleLogin = async()=>{
+
+  }
+
+  const handleSignup = async()=>{
+
+  }
 
   return (
     <div className="h-[100vh] w-[100vw] flex items-center justify-center">
@@ -34,6 +44,7 @@ const Auth = () => {
               />
               <Input  placeholder="Password" type="password" className="rounded-full p-6" value={password} onChange={(e)=> setPassword(e.target.value)}
               />
+              <Button className="rounded-full p-6" onClick={handleLogin}>Login</Button>
               </TabsContent>
               <TabsContent className="flex flex-col gap-5"  value="signup">
               <Input  placeholder="Email" type="email" className="rounded-full p-6" value={email} onChange={(e)=> setEmail(e.target.value)}
@@ -42,10 +53,13 @@ const Auth = () => {
               />
               <Input  placeholder="Confirm Password" type="password" className="rounded-full p-6" value={confirmPassword} onChange={(e)=> setConfirmPassword(e.target.value)}
               />
+              <Button className="rounded-full p-6" onClick={handleSignup}>SignUp</Button>
               </TabsContent>
             </Tabs>
-
           </div>
+        </div>
+        <div className="hidden xl:flex justify-center items-center">
+          <img src={Background} alt="backgroundImg" className="h-[600px]"/>
         </div>
       </div>
     </div>
