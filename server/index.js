@@ -17,11 +17,13 @@ app.use(cors({
   credentials: true,
 }))
 
+
+
 app.use(cookieParser());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
-
+app.use("/uploads/profiles", express.static("uploads/profiles"));
 
 const server = app.listen(port, () =>{
   console.log(`Server is running at http://localhost:${port}`);
