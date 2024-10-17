@@ -1,21 +1,32 @@
 import { getColor } from "@/lib/utils";
 import { useAppStore } from "@/store";
-import { HOST } from "@/utils/constants";
+import { HOST, LOGOUT_ROUTE } from "@/utils/constants";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@radix-ui/react-tooltip";
 import { FiEdit2 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import {  IoPowerSharp } from "react-icons/io5";
+import { apiClient } from "@/lib/api-client";
 
 
 
 const ProfileInfo = () => {
 
-  const { userInfo } = useAppStore();
+  const { userInfo, setUserInfo } = useAppStore();
   const nagative = useNavigate();
 
 
-  const logOut = async () =>{};
+  const logOut = async () =>{
+    try {
+      const response = await apiClient.post(LOGOUT_ROUTE,{},{ withCredentials:true });
+      if(response.status === 200){
+        nagative("/auth");
+        setUserInfo(null);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
   return (
@@ -25,7 +36,7 @@ const ProfileInfo = () => {
         <div className="w-12 h-12 relative">
           <Avatar className="h-12 w-12 rounded-full overflow-hidden">
             {
-              userInfo.image ? (<AvatarImage src={`${HOST}/${userInfo.image}`} alt="profile" className="object-cover w-full h-full bg-black" />) :
+              userInfo.image ? (<AvatarImage src={`${HOST}/${userInfo.image}`} alt="profile" className="object-cover w-full h-full bg-black rounded-full" />) :
                 (
                   <div className={`uppercase h-12 w-12 text-lg border-[1px] flex items-center justify-center rounded-full ${getColor(userInfo.color)}`}>
                     {userInfo.firstName ? userInfo.firstName.split("").shift() : userInfo.email.split("").shift()}
