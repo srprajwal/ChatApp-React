@@ -13,4 +13,4 @@ const ChatContainer = () => {
   )
 }
 
-export default ChatContainer
+export default ChatContainer;
