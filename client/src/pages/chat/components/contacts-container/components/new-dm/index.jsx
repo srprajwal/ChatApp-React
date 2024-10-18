@@ -91,6 +91,8 @@ const NewDm = () => {
           <div>
             <Input placeholder="Search Contacts" className="rounded-lg p-6 bg-[#2c2e3b] border-none placeholder:text-neutral-500" onChange={e => searchContacts(e.target.value)} />
           </div>
+          {
+            searchedContacts.length > 0 && (
           <ScrollArea className="h-[250px] ">
             <div className="flex flex-col gap-5">
               {
@@ -127,9 +129,12 @@ const NewDm = () => {
               }
             </div>
           </ScrollArea>
+
+            )
+          }
           <div>
             {
-              searchedContacts.length <= 0 && <div className="flex-1 bg-[#1c1d25] md:flex mt-5 flex-col items-center justify-center  duration-1000 transition-all">
+              searchedContacts.length <= 0 && <div className="flex-1 md:flex mt-5 md:mt-0 flex-col items-center justify-center  duration-1000 transition-all">
                 <Lottie
                   isClickToPauseDisabled={true}
                   height={100}
