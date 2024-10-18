@@ -22,9 +22,12 @@ import { apiClient } from "@/lib/api-client";
 import { SEARCH_CONTACTS_ROUTES } from "@/utils/constants";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
+import { useAppStore } from "@/store";
 
 
 const NewDm = () => {
+
+  const { setSelectedChatType, setSelectedChatData } = useAppStore();
 
   const [openNewContactModel, setOpenNewContactModel] = useState(false);
 
@@ -53,6 +56,12 @@ const NewDm = () => {
     }
   };
 
+  const selectNewContact = (contact) => {
+    setOpenNewContactModel(false);
+    setSelectedChatType("contact");
+    setSelectedChatData(contact);
+    setSearchedContacts([]);
+  };
   
 
   return (
@@ -86,7 +95,9 @@ const NewDm = () => {
             <div className="flex flex-col gap-5">
               {
                 searchedContacts.map((contact) => (
-                  <div key={contact._id} className="flex gap-3 items-center cursor-pointer">
+                  <div key={contact._id} className="flex gap-3 items-center cursor-pointer"
+                  onClick={() => selectNewContact(contact)}
+                  >
 
                     <div className="w-12 h-12 relative ">
                       <Avatar className="h-12 w-12 rounded-full overflow-hidden">
