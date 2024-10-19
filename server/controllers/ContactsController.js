@@ -28,6 +28,7 @@ export const searchContacts = async (request, response, next) => {
 
     
     return response.status(200).json({ contacts });
+
   } catch (error) {
     console.error({ error });
     return response.status(500).send("Internal server error");
