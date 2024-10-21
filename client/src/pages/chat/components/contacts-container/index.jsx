@@ -5,6 +5,7 @@ import ProfileInfo from "./components/profile-info";
 import { GET_DM_CONTACTS_ROUTES } from "@/utils/constants";
 import { useAppStore } from "@/store";
 import ContactList from "@/components/contact-list";
+import CreateChannel from "./components/create-channel";
 
 const ContactsContainer = () => {
 
@@ -41,6 +42,7 @@ const ContactsContainer = () => {
       <div className="my-5">
         <div className="flex items-center justify-between pr-10">
           <Title text="Channels" />
+          <CreateChannel />
         </div>
       </div>
       <ProfileInfo />
